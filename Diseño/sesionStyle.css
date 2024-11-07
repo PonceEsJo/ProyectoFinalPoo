@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    font-family: 'Times New Roman', Times, serif;
+    color:#000f;
+}
+body, html {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    background-image: url('/imagenes/gestorAlmacen.jpg');
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+}
+
+.formulario{
+    background-color: #ccc4;
+    padding: 30px;
+    border: 3px solid #ccc2;
+    border-radius: 20px;
+}
+.contenedor {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.linea {
+    height: 1px;
+    background-color: #0005;
+    margin: 10px 0;
+}
+.datos {
+    width: 100%;
+    margin:10px 0 15px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc3;
+    background-color: #0003;
+}
+.boton {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #00f9;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.boton:hover{
+    background-color: #f005;
+    cursor: pointer;
+    transition: 0.5;
+}
+
+h1{
+    text-align: center;
+    font-weight: bodl;
+}
+
+label{
+    font-size: 18px;
+}
