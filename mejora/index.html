@@ -3,90 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Modal con &lt;dialog&gt;</title>
+    <style>
+        dialog {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        dialog::backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .close-btn {
+            background-color: #ff5a5f;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div class="salida-producto">
-        <h2>Registrar Salida de Producto</h2>
-        <form id="salidaForm">
-          <label for="producto">Producto:</label>
-          <select id="producto" required>
-            <option value="">Seleccione un producto</option>
-            <!-- Opciones de productos -->
-          </select>
-      
-          <label for="cantidad">Cantidad a salir:</label>
-          <input type="number" id="cantidad" min="1" required>
-      
-          <label for="ubicacion">Ubicación de almacén:</label>
-          <select id="ubicacion">
-            <option value="">Seleccione ubicación</option>
-            <!-- Opciones de ubicaciones -->
-          </select>
-      
-          <label for="fecha">Fecha de salida:</label>
-          <input type="date" id="fecha" value="2024-11-03" required>
-      
-          <label for="motivo">Motivo de la salida:</label>
-          <input type="text" id="motivo" required>
-      
-          <label for="responsable">Responsable:</label>
-          <input type="text" id="responsable" required>
-      
-          <button type="submit">Registrar salida</button>
-        </form>
-      
-        <h3>Salidas recientes</h3>
-        <table id="salidasTabla">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Ubicación</th>
-              <th>Fecha</th>
-              <th>Motivo</th>
-              <th>Responsable</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Filas generadas dinámicamente -->
-          </tbody>
-        </table>
-      </div>
-      
-      <script>
-        document.getElementById('salidaForm').addEventListener('submit', function (e) {
-          e.preventDefault();
-      
-          // Obtener valores del formulario
-          const producto = document.getElementById('producto').value;
-          const cantidad = document.getElementById('cantidad').value;
-          const ubicacion = document.getElementById('ubicacion').value;
-          const fecha = document.getElementById('fecha').value;
-          const motivo = document.getElementById('motivo').value;
-          const responsable = document.getElementById('responsable').value;
-      
-          // Agregar nueva salida a la tabla
-          const tabla = document.getElementById('salidasTabla').querySelector('tbody');
-          const nuevaFila = document.createElement('tr');
-      
-          nuevaFila.innerHTML = `
-            <td>${Math.floor(Math.random() * 1000)}</td>
-            <td>${producto}</td>
-            <td>${cantidad}</td>
-            <td>${ubicacion}</td>
-            <td>${fecha}</td>
-            <td>${motivo}</td>
-            <td>${responsable}</td>
-          `;
-          tabla.appendChild(nuevaFila);
-      
-          // Limpiar formulario
-          document.getElementById('salidaForm').reset();
+    <h1>Ejemplo de Modal con &lt;dialog&gt;</h1>
+    <button id="open-dialog">Abrir Modal</button>
+
+    <!-- Modal con dialog -->
+    <dialog id="myDialog">
+        <h2>Este es un modal</h2>
+        <p>Este contenido está dentro de un elemento `<dialog>`.</p>
+        <button class="close-btn" id="close-dialog">Cerrar</button>
+    </dialog>
+
+    <script>
+        // Referencias a los elementos
+        const dialog = document.getElementById("myDialog");
+        const openDialogBtn = document.getElementById("open-dialog");
+        const closeDialogBtn = document.getElementById("close-dialog");
+
+        // Abrir el modal
+        openDialogBtn.addEventListener("click", () => {
+            dialog.showModal(); // Muestra el modal centrado y bloquea el fondo
         });
-      </script>
-      
+
+        // Cerrar el modal
+        closeDialogBtn.addEventListener("click", () => {
+            dialog.close(); // Cierra el modal
+        });
+
+        // Permitir cerrar el modal al hacer clic fuera del contenido
+        dialog.addEventListener("click", (e) => {
+            if (e.target === dialog) {
+                dialog.close();
+            }
+        });
+    </script>
 </body>
 </html>

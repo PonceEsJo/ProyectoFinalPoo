@@ -17,23 +17,32 @@ li {
 
 h1 {
     font-weight: 600;
-    font-size: 3rem;
+    font-size: 1.5rem;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Hace que el cuerpo ocupe toda la ventana */
+    overflow: hidden; /* Elimina el scroll no deseado */
 }
 
-.contenedor {
-    display: flex;
+.wrapper {
+    display: flex; /* Flexbox para alinear el sidebar y el main horizontalmente */
+    height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
 }
 
-.main {
+main {
     min-height: 100vh;
-    width: 100%;
-    overflow: hidden;
+    flex: 1; /* Ocupa el espacio restante al lado del sidebar */
+    overflow: auto; /* Permite scroll si el contenido del main es muy grande */
     transition: all 0.35s ease-in-out;
     background-color: #fafbfe;
+    padding: 1rem; /* Margen interno para el contenido del main */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #sidebar {
@@ -44,6 +53,7 @@ body {
     background-color: #0e2238;
     display: flex;
     flex-direction: column;
+    height: 100vh; /* Asegura que el sidebar ocupe toda la pantalla */
 }
 
 #sidebar.expand {
@@ -141,119 +151,64 @@ a.sidebar-link:hover {
     transition: all .2s ease-out;
 }
 
-.contenedor-tabla{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.contedor-mayor{
+    width: 80%;
+    height: 80%;
+    background-color: f4f4f4;
+    box-sizing: border-box;
+    border: 3px solid #0002;
+    border-radius: 20px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.titulo{
+    justify-items: center;
+    margin-bottom: 20px;
+    background-color: fff;
+    border: 2px solid #0001;
+    border-radius: 15px;
+    box-sizing: border-box;
 }
 
 h2{
-    text-transform: uppercase;
-    margin: 80px 0 0 50px;
-    font-size: 40px;
+    padding: 10px;
+    display: block;
 }
 
-table{
-    text-align: center;
-    margin: 15px 50px 50px 50px;
-}
-
-.contenedor-paginacion{
-    margin:auto;
+.contenedor-menor{
+    width: 100%;
+    height: 85%;
+    background-color: fff;
+    border: 2px solid #0002;
+    border-radius: 20px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
-}
-
-.datos{
-    justify-content: end;
-    align-items: center;
-    display: flex;
-}
-
-#i-usuario{
-    font-size: 25px;
-    padding: 10px;
-    margin: 0 5px 0 30px;
-    color: #ccc;
-    border: 3px solid #0004;
-    border-radius: 50%;
-}
-
-#i-usuario:hover{
-    color: black;
-    border-color: black;
     box-sizing: border-box;
-    transition: 0.3;
 }
 
-.btn-eliminar {
-    font-size: 15px;
-    border-radius: 15px;
-    padding: 4px;
-    background-color: #ccc;
-}
-
-.btn-modificar{
-    font-size: 15px;
-    border-radius: 15px;
-    padding: 4px;
-    background-color: #ccc;
-}
-
-.btn-eliminar:hover{
-    cursor: pointer;
-    background-color: #f00;
-    color: #fff;
-    transition: 0.5;
-}
-.btn-modificar:hover{
-    cursor: pointer;
-    background-color: rgb(0, 132, 255);
-    color: #fff;
-    transition: 0.5;
-}
-
-.form-linea{
-    margin: 10px 0;
-    background-color: #ccc;
-    width: 100%;
-    height: 1px;
-}
-
-.input-text{
-    display: block;
-    margin: 10px 0;
-    width: 75%;
-}
-
-.label-text{
-    margin-top: 0 ;
-    display: block;
-}
-
-.label-numbrer{
-    margin-right: 20px;
-}
-
-.input-date{
-    margin-left: 23px;
-    text-align: center;
-}
-
-
-.input-number{
-    display: inline;
-    margin-left: 30px;
-    width: 60px;
-    text-align: center;
-}
-
-.btn-botonSA{
-    margin-right: 80px;
-    box-sizing: border-box;
-    border: 3px solid blue;
+.informacion1{
+    width: 50% ;
+    height: 90%;
+    background-color: fff;
+    border: 2px solid #0001;
     border-radius: 10px;
-    padding: 5px;
-    background-color: lightblue;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 15px;
 }
+.informacion2{
+    width: 50% ;
+    height: 90%;
+    background-color: fff;
+    border: 2px solid #0001;
+    border-radius: 10px;
+    display: inline-block;
+    box-sizing: border-box;
+    margin : 15px;
+}
+
+
+
+
