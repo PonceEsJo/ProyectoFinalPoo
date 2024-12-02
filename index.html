@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movimiento de Productos</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <form id="movimientoForm">
+        <div class="grid-container">
+            <div class="grid-item">
+                <label for="tipoMovimiento">Tipo de Movimiento:</label>
+                <select id="tipoMovimiento">
+                    <option value="entrada">Entrada</option>
+                    <option value="salida">Salida</option>
+                </select>
+            </div>
+            <div class="grid-item">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha">
+            </div>
+            <div class="grid-item">
+                <label for="comentarios">Comentarios:</label>
+                <textarea id="comentarios"></textarea>
+            </div>
+            <div class="grid-item">
+                <label for="producto">Producto:</label>
+                <select id="producto">
+                    </select>
+            </div>
+            <div class="grid-item">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad">
+            </div>
+            <div class="grid-item">
+                <button type="button" id="agregarProducto">Agregar Producto</button>
+            </div>
+        </div>
+
+        <table id="productosTable">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <div class="total">Total General: $<span id="total">0.00</span></div>
+        <button type="submit">Confirmar Movimiento</button>
+        <button type="reset">Cancelar Movimiento</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>

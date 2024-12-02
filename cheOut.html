@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimiento de Productos - Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        h1 {
+            text-align: center;
+        }
+        dialog {
+            width: 600px;
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            grid-column: span 2;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        table th {
+            background-color: #f4f4f4;
+        }
+        .actions button {
+            padding: 5px 10px;
+        }
+        .total {
+            grid-column: span 2;
+            text-align: right;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .btn-container {
+            grid-column: span 2;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <dialog id="productDialog">
+        <h1>Movimiento de Productos</h1>
+
+        <div class="container">
+            <!-- Encabezado -->
+            <div class="form-group">
+                <label for="movementType">Tipo de Movimiento</label>
+                <select id="movementType">
+                    <option value="entrada">Entrada</option>
+                    <option value="salida">Salida</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="movementDate">Fecha</label>
+                <input type="date" id="movementDate" value="">
+            </div>
+
+            <div class="form-group">
+                <label for="comments">Comentarios</label>
+                <input type="text" id="comments" placeholder="Notas adicionales">
+            </div>
+
+            <!-- Agregar Producto -->
+            <div class="form-group">
+                <label for="productSelect">Producto</label>
+                <select id="productSelect">
+                    <option value="1" data-price="5">Producto A</option>
+                    <option value="2" data-price="10">Producto B</option>
+                    <option value="3" data-price="7">Producto C</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="productQuantity">Cantidad</label>
+                <input type="number" id="productQuantity" placeholder="Ingrese cantidad" min="1" value="1">
+            </div>
+
+            <button onclick="addProduct()">Agregar Producto</button>
+
+            <!-- Tabla de Productos -->
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Subtotal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <!-- Total General -->
+            <div class="total" id="totalGeneral">Total General: $0.00</div>
+
+            <!-- Botones -->
+            <div class="btn-container">
+                <button onclick="confirmMovement()">Confirmar Movimiento</button>
+                <button onclick="cancelMovement()">Cancelar Movimiento</button>
+            </div>
+        </div>
+    </dialog>
+
+    <script>
+        let total = 0;
+
+        function addProduct() {
+            const productSelect = document.getElementById('productSelect');
+            const selectedProduct = productSelect.options[productSelect.selectedIndex];
+            const productName = selectedProduct.text;
+            const productPrice = parseFloat(selectedProduct.getAttribute('data-price'));
+            const productQuantity = parseInt(document.getElementById('productQuantity').value);
+
+            if (productQuantity <= 0) {
+                alert("La cantidad debe ser mayor a cero.");
+                return;
+            }
+
+            const subtotal = productPrice * productQuantity;
+
+            // Agregar fila a la tabla
+            const tableBody = document.getElementById('productTable').querySelector('tbody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${productName}</td>
+                <td>${productQuantity}</td>
+                <td>$${productPrice.toFixed(2)}</td>
+                <td>$${subtotal.toFixed(2)}</td>
+                <td class="actions"><button onclick="removeProduct(this, ${subtotal})">Eliminar</button></td>
+            `;
+            tableBody.appendChild(newRow);
+
+            // Actualizar total general
+            total += subtotal;
+            updateTotal();
+        }
+
+        function removeProduct(button, subtotal) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+
+            // Actualizar total general
+            total -= subtotal;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            document.getElementById('totalGeneral').textContent = `Total General: $${total.toFixed(2)}`;
+        }
+
+        function confirmMovement() {
+            const movementType = document.getElementById('movementType').value;
+            const movementDate = document.getElementById('movementDate').value;
+            const comments = document.getElementById('comments').value;
+
+            if (!movementDate) {
+                alert("La fecha del movimiento es obligatoria.");
+                return;
+            }
+
+            alert(`Movimiento confirmado:\nTipo: ${movementType}\nFecha: ${movementDate}\nComentarios: ${comments}\nTotal: $${total.toFixed(2)}`);
+        }
+
+        function cancelMovement() {
+            if (confirm("¿Estás seguro de cancelar el movimiento?")) {
+                // Resetear todo
+                document.getElementById('productTable').querySelector('tbody').innerHTML = "";
+                total = 0;
+                updateTotal();
+                document.getElementById('movementType').value = "entrada";
+                document.getElementById('movementDate').value = "";
+                document.getElementById('comments').value = "";
+            }
+        }
+
+        // Mostrar el dialog al cargar la página
+        window.onload = function() {
+            const dialog = document.getElementById('productDialog');
+            dialog.showModal();
+        };
+    </script>
+</body>
+</html>
+

@@ -171,7 +171,7 @@ h2{
     padding-right: 60px;
 }
 
-#eliminar{
+.eliminar{
     background: rgb(235, 51, 36);
 }
 
@@ -180,7 +180,7 @@ h2{
     padding: 10px;
 }
 
-#editar{
+.editar{
     background: rgb(21, 233, 0);
 }
 

@@ -9,7 +9,7 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="/Operadorio/Estilos/estilosTablas.css">
 </head>
 
 <body>
@@ -25,13 +25,13 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="perfilAdministrador.html" class="sidebar-link">
                         <i class="lni lni-user"></i>
                         <span>Perfil</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="productosAdministrador.html" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
                         <span>Productos</span>
                     </a>
@@ -43,6 +43,24 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a href="pedidosAdministrador.html" class="sidebar-link">
+                        <i class="lni lni-popup"></i>
+                        <span>Pedidos</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="proveedoresAdministrador.html" class="sidebar-link">
+                        <i class="lni lni-popup"></i>
+                        <span>Proveedores</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="UsuariosAdministrador.html" class="sidebar-link">
+                        <i class="lni lni-popup"></i>
+                        <span>Usuarios</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="lni lni-cog"></i>
                         <span>Distribucion</span>
@@ -50,22 +68,53 @@
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <a href="/Login/index.html" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Salir</span>
                 </a>
             </div>
         </aside>
-        <div class="main p-3">
-            <div class="text-center">
-                
+        <main>
+            <div class="contenedorMayor">
+                <div class="titulo">
+                    <h2>Movimientos</h2>
+                </div>
+                <div class="contenedorMenor">
+                    <div class="contenedorboton">
+                        <button id="añadir">Realizar Movimiento</button>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
+        </main>
     </div>
+    
+    <!--Modal del Boton Añadir-->
+    <dialog id="miModalAñadir">
+            <h2>Modal Añadir</h2>
+            <button id="cerrarAñadir">Cerrar</button>
+    </dialog>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="operarioProductos.js"></script>
+    <script src="/Operadorio/funcionabilidad/script.js"></script>
+    <script src="/Operadorio/Modales/Modal.js"></script>
 </body>
 
 </html>
